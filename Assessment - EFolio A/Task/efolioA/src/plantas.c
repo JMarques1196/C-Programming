@@ -1,4 +1,3 @@
-
 #include "../include/plantas.h"
 #include "../include/types.h"
 #include <stdio.h>
@@ -21,7 +20,7 @@ void listar_plantas(void) {
         printf("Nao existem plantas registadas.\n");
         return;
     }
-    // Erro 3: O ciclo fordeve ser i < total_plantas
+    // Corrige Erro 3: O ciclo for deve ser i < total_plantas
     for (int i = 0; i < total_plantas; i++) {
         printf("ID: %d\n", plantas[i].id);
         printf("  Nome: %s\n", plantas[i].nome);
@@ -92,13 +91,13 @@ int carregar_plantas(void) {
 
     total_plantas = 0;
     // Correção do erro 1: ciclo while corrigido do enunciado. Corrige while (!feof(f_plantas))
-    while (fscanf(f_plantas, "%d,%[^,],%[^,],%[^,],%d,%d\n",
+    while (total_plantas < MAX_PLANTAS && fscanf(f_plantas, "%d,%[^,],%[^,],%[^,],%d,%d\n", // Correção do erro 2: Verificar se não existe buffer overflow
                   &plantas[total_plantas].id,
                   plantas[total_plantas].nome,
                   plantas[total_plantas].especie,
                   plantas[total_plantas].data_plantio,
                   &plantas[total_plantas].intervalo_rega,
-                  &plantas[total_plantas].ultima_rega) == 6 && total_plantas < MAX_PLANTAS) {
+                  &plantas[total_plantas].ultima_rega) == 6) { 
         total_plantas++;
     }
 

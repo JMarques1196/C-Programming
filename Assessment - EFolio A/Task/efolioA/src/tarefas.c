@@ -52,7 +52,7 @@ void listar_tarefas_pendentes() {
 
 void concluir_tarefa(int id) {
     for (int i = 0; i < total_tarefas; i++) {
-        // Correção doErro 9: O operador de comparação deve ser ==, mas foi usado =, o que causa uma atribuição em vez de uma comparação, resultando em um comportamento incorreto (sempre marcando a tarefa como concluida independentemente do id)
+        // Correção do Erro 9: O operador de comparação deve ser ==, mas foi usado =, o que causa uma atribuição em vez de uma comparação, resultando em um comportamento incorreto (sempre marcando a tarefa como concluida independentemente do id)
         if (tarefas[i].id_tarefa == id) {
             tarefas[i].concluida = 1;
             printf("Tarefa concluida com sucesso!\n");
@@ -66,7 +66,6 @@ void concluir_tarefa(int id) {
 
 int guardar_tarefas(void) {
     // Correção do Erro 10: Guardar tarefas em um arquivo CSV, garantindo que os dados sejam persistidos corretamente
-     FILE *f_tarefas = fopen("tarefas.csv", "w");
     FILE *f_tarefas = fopen("tarefas.csv", "w");
     if (f_tarefas == NULL) {
         return 0;
@@ -94,7 +93,7 @@ int carregar_tarefas(void) {
     }
 
     total_tarefas = 0;
-    // ciclo while corrigido do enunciado. Corrige while (!feof(f_tarefas))
+    // Erro1 ciclo while corrigido do enunciado. Corrige while (!feof(f_tarefas))
     while (fscanf(f_tarefas, "%d,%99[^,],%d,%d\n",
                   &tarefas[total_tarefas].id_tarefa,
                   tarefas[total_tarefas].descricao,

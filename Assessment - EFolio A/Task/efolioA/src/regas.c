@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/regas.h" // Acesso a funções de carregar e guardar dados
+#include "../include/regas.h" 
 #include "../include/plantas.h" // Acesso a funções relacionadas a plantas
 #include "../include/types.h" // Acesso a definições de tipos e constantes
 
@@ -14,7 +14,7 @@ int registar_rega(int id_planta, int data, int quantidade){
         return 0;
     }
 
-    // Correção do erro 4:Verificar o limite de regas
+    // Correção do erro 4: Verificar o limite de regas
     if(total_regas >= MAX_REGAS){
         printf("Erro: Limite de regas atingido. Nao e possivel registrar mais regas.\n");
         return 0;
@@ -28,6 +28,7 @@ int registar_rega(int id_planta, int data, int quantidade){
 
     // Correção do Erro 5: Atualiza a ultima rega da planta após registrar a rega, garantindo que a função verificar_rega() funcione corretamente.
     atualizar_ultima_rega(id_planta, data);
+    printf("Rega registrada com sucesso!\n"); 
     return 1;
 
 }

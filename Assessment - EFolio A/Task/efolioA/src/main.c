@@ -1,5 +1,5 @@
-#include <stdio.h> // Necessário para funções de entrada e saída, como printf e scanf
-#include <stdlib.h> // Necessário para funções de alocação dinâmica, como malloc e free
+#include <stdio.h> 
+#include <stdlib.h> 
 #include "../include/types.h" // Acesso a definições de tipos
 #include "../include/dados.h" // Acesso a funções de carregar e guardar dados
 #include "../include/plantas.h" // Acesso a funções relacionadas a plantas
@@ -8,7 +8,7 @@
 
 
 /* MAIN */
-// Erro 13, scanf sem limites de tamanho (em todos)
+// Erro 14, scanf sem limites de tamanho (em todos)
 
 int main() {
 
@@ -54,7 +54,7 @@ int main() {
             int intervalo_rega; /* em dias */
 
             printf("Introduza o Nome: "); 
-            //Correção do Erro 15: Substituir scanf por fgets para ler strings com espaços e evitar buffer overflow.
+            //Correção do Erro 14: Substituir scanf por fgets para ler strings com espaços e evitar buffer overflow.
             // Esta correção repete-te para todo o main onde existia scanf para ler strings.
             fgets(nome, sizeof(nome), stdin);
             nome[strcspn(nome, "\n")] = '\0'; 
@@ -86,7 +86,6 @@ int main() {
             getchar(); 
             getchar(); 
             break;    
-            break;
         }   
 
         case  4: {
@@ -101,7 +100,6 @@ int main() {
             printf("Quantidade de agua (em ml): ");
             scanf("%d", &quantidade);
             registar_rega(id_planta, data, quantidade);
-            printf("Rega registrada com sucesso!\n"); // Provavelmente tem que estar dentro de registar_rega.
             guardar_dados(); 
             break;
         }
@@ -143,7 +141,7 @@ int main() {
             printf("ID da tarefa a concluir: ");
             scanf("%d", &id);
 
-            concluir_tarefa(id); // Exemplo de conclusão de tarefa
+            concluir_tarefa(id); 
             guardar_dados();
             break;
         }
