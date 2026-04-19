@@ -10,7 +10,7 @@
 /* MAIN */
 // Erro 14, scanf sem limites de tamanho (em todos)
 
-int main() {
+int main(void) {
 
     carregar_dados(); // Carregar os dados existentes ao iniciar o programa
 

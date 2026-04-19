@@ -32,7 +32,7 @@ int criar_tarefa(char* descricao, int data_prevista) {
 
 /* LISTAR TAREFAS */
 
-void listar_tarefas_pendentes() {
+void listar_tarefas_pendentes(void) {
     
     if(total_tarefas == 0) {
         printf("Nao existem tarefas registadas.\n");
