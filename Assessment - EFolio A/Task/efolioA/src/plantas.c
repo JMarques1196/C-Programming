@@ -21,7 +21,7 @@ void listar_plantas(void) {
         printf("Nao existem plantas registadas.\n");
         return;
     }
-
+    // Erro 3: O ciclo fordeve ser i < total_plantas
     for (int i = 0; i < total_plantas; i++) {
         printf("ID: %d\n", plantas[i].id);
         printf("  Nome: %s\n", plantas[i].nome);
@@ -37,7 +37,7 @@ void listar_plantas(void) {
 
 int adicionar_planta(char* nome, char* especie, char* data_plantio, int intervalo) {
     
-    /* Verificar se existe espaço disponível */
+    // Corrige Erro 13: Verificar se o limite de plantas não foi ultrapassado, o que pode causar um buffer overflow
     if (total_plantas >= MAX_PLANTAS) {
         return 0;
     }
@@ -54,10 +54,8 @@ int adicionar_planta(char* nome, char* especie, char* data_plantio, int interval
 
 
     plantas[total_plantas].intervalo_rega = intervalo;
-    plantas[total_plantas].ultima_rega = 0; // Inicializar ultima rega como 0 (nunca regada)
+    plantas[total_plantas].ultima_rega = 0; // Corrige Erro 12: Inicializar ultima rega como 0 (nunca regada)
 
-// Erro 12: falta o = para atribuir o valor de ultima_rega, o que pode resultar em um valor indefinido e causar problemas nas funções que dependem desse campo, como verificar_rega()
-// Tambem falta consultar se total_plantas ultrapassou MAX_PLANTAS, o que pode causar um buffer overflow
     total_plantas++;
     return 1;
 }
@@ -85,10 +83,7 @@ int guardar_plantas(void) {
 }
 
 /*  CARREGAR PLANTAS */
-/* Lógica:
-    1 . Ler o ficheiro linha a linha com scanf e extrair os campos.
-    2 . Para cada linha lida, criar uma nova planta no array total_plantas.
-*/
+
 int carregar_plantas(void) {
     FILE *f_plantas = fopen("plantas.csv", "r");
     if (f_plantas == NULL) {
@@ -96,9 +91,7 @@ int carregar_plantas(void) {
     }
 
     total_plantas = 0;
-    // ciclo while corrigido do enunciado.
-    // Notas de estudo: fscanf escreve o valor numa variavel, logo usa & para saber onde ela está na memoria
-    // strings nao precisam de & porque ja são ponteiros (arrays decaem para ponteiros)
+    // Correção do erro 1: ciclo while corrigido do enunciado. Corrige while (!feof(f_plantas))
     while (fscanf(f_plantas, "%d,%[^,],%[^,],%[^,],%d,%d\n",
                   &plantas[total_plantas].id,
                   plantas[total_plantas].nome,

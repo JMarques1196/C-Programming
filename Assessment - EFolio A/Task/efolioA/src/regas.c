@@ -4,18 +4,17 @@
 #include "../include/types.h" // Acesso a definições de tipos e constantes
 
 static Rega regas[MAX_REGAS];
-int total_regas = 0;
+static int total_regas = 0;
 
 /* REGISTAR REGAS */
 int registar_rega(int id_planta, int data, int quantidade){
-    // Erro 5 Ausencia de verificação se total_regas ultrapassou MAX_REGAS, o que pode causar um buffer overflow
     // Verificar se a planta existe
     if(!planta_existe(id_planta)){
         printf("Erro: Planta com ID %d nao existe.\n", id_planta);
         return 0;
     }
 
-    // Verificar o limite de regas
+    // Correção do erro 4:Verificar o limite de regas
     if(total_regas >= MAX_REGAS){
         printf("Erro: Limite de regas atingido. Nao e possivel registrar mais regas.\n");
         return 0;
@@ -27,6 +26,7 @@ int registar_rega(int id_planta, int data, int quantidade){
     regas[total_regas].quantidade_agua = quantidade;
     total_regas++;
 
+    // Correção do Erro 5: Atualiza a ultima rega da planta após registrar a rega, garantindo que a função verificar_rega() funcione corretamente.
     atualizar_ultima_rega(id_planta, data);
     return 1;
 
@@ -58,6 +58,7 @@ int carregar_regas(void) {
     }
 
     total_regas = 0;
+    // ciclo while corrigido do enunciado. Corrige while (!feof(f_regas))
     while (fscanf(f_regas, "%d,%d,%d,%d\n",
                   &regas[total_regas].id_rega,
                   &regas[total_regas].id_planta,

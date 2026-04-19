@@ -18,7 +18,7 @@ int main() {
     int opcao;
     printf("Bem-vindo ao sistema de gestão de plantas!\n");
     
-    // Erro 14: Sintaxe, do while (Do em falta)
+    // Correção do Erro 16: Sintaxe, do while (Do em falta)
     do{
         
         /* MENU */
@@ -41,19 +41,21 @@ int main() {
             listar_plantas();
             printf("Prima Enter para voltar ao Menu principal... ");
             getchar(); // Limpar o buffer do teclado
-            getchar(); // Esperar pela entrada do usuário
+            getchar(); // Esperar pela entrada do utilizador
             break; // Voltar ao menu    
         }
 
         // Adicionar Planta
         case 2: {
             printf("\n=== ADICIONAR PLANTAS ===\n");
-            getchar(); // Limpar o buffer do teclado para não interferir com fgets
+            getchar(); 
             
             char nome[50], especie[50], data_plantio[11];
             int intervalo_rega; /* em dias */
 
             printf("Introduza o Nome: "); 
+            //Correção do Erro 15: Substituir scanf por fgets para ler strings com espaços e evitar buffer overflow.
+            // Esta correção repete-te para todo o main onde existia scanf para ler strings.
             fgets(nome, sizeof(nome), stdin);
             nome[strcspn(nome, "\n")] = '\0'; 
 
@@ -80,11 +82,10 @@ int main() {
             int data_atual;
             printf("Data atual (dias desde 01/01/2026): ");
             scanf("%d", &data_atual);
-            verificar_rega(data_atual); // Exemplo de data atual para verificar regas
             printf("Prima Enter para voltar ao Menu principal... ");
-            getchar(); // Limpar o buffer do teclado
-            getchar(); // Esperar pela entrada do usuário
-            break; // Voltar ao menu    
+            getchar(); 
+            getchar(); 
+            break;    
             break;
         }   
 
@@ -99,8 +100,7 @@ int main() {
             scanf("%d", &data);
             printf("Quantidade de agua (em ml): ");
             scanf("%d", &quantidade);
-
-            registar_rega(2, 15, 500); // Exemplo de rega para a planta com ID 1
+            registar_rega(id_planta, data, quantidade);
             printf("Rega registrada com sucesso!\n"); // Provavelmente tem que estar dentro de registar_rega.
             guardar_dados(); 
             break;
@@ -110,15 +110,15 @@ int main() {
             // Listar Tarefas
             listar_tarefas_pendentes();
             printf("Prima Enter para voltar ao Menu principal... ");
-            getchar(); // Limpar o buffer do teclado
-            getchar(); // Esperar pela entrada do usuário
+            getchar(); 
+            getchar(); 
             break;
         }
         
         case 6: {
             // Adicionar Tarefa
             printf("\n=== ADICIONAR TAREFA ===\n");
-            getchar(); // Limpar o buffer do teclado para não interferir com fgets
+            getchar(); 
 
             char descricao[100]; 
             int data_prevista;
@@ -130,8 +130,7 @@ int main() {
             printf("Data prevista (dias desde 01/01/2026): ");
             scanf("%d", &data_prevista);
 
-            criar_tarefa(descricao, data_prevista); // Exemplo de criação de tarefa
-            printf("Tarefa criada com sucesso!\n"); // Provavelmente tem que estar dentro de criar tarefa.
+            criar_tarefa(descricao, data_prevista); 
             guardar_dados(); 
 
             break;
