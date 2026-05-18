@@ -2,7 +2,7 @@
 #define DADOS_H
 
 void carregar_dados(void);
-void guardar_dados();
+void guardar_dados(void);
 int carregar_regas(void);
 int guardar_regas(void);
 int carregar_tarefas(void);

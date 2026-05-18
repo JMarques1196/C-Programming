@@ -1,6 +1,5 @@
 /* TYPES AND VARIABLES */
 
-/* Não viola encapsulamento. Conhecer os tipos não dá acesso aos membros internos nem aos valores do estado */
 #ifndef TYPES_H
 #define TYPES_H
 #include <stdio.h>
