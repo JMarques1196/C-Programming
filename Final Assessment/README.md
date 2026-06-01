@@ -1,62 +1,34 @@
-# GreenTrack 🌱
+# GreenTrack — Community Garden Management System
 
-A community garden management system developed in C, as part of the Programming Laboratory course.
+A community garden management system written in C, developed as part of my 
+Computer Science degree at Universidade Aberta.
 
-## Features
+## What it does
+Manages plants, watering schedules, and maintenance tasks, persisting all 
+data to CSV files across sessions.
 
-- Plant registration and listing
-- Watering log with history
-- Pending task management
-- Data persistence via CSV files
+## What this project covers
+This project was completed in two stages:
 
-## Project Structure
+**Stage 1 — Bug fixing and modular architecture**
+- Identified and documented 16 bugs in a monolithic codebase (logic errors, 
+buffer overflows, file handling issues, off-by-one errors)
+- Redesigned the codebase into a modular architecture with full encapsulation 
+— No module accesses another's internal state directly
 
-```
-GreenTrack/
-├── src/
-│   ├── main.c          # Entry point and main menu
-│   ├── plants.c        # Plant management
-│   ├── watering.c      # Watering records
-│   ├── tasks.c         # Task management
-│   └── data.c          # Aggregated persistence
-├── include/
-│   ├── types.h         # Data structures and constants
-│   ├── plants.h
-│   ├── watering.h
-│   ├── tasks.h
-│   └── data.h
-├── tests/
-│   ├── test_plants.c       # Unit tests — plants module
-│   ├── test_watering.c     # Unit tests — watering module
-│   ├── test_tasks.c        # Unit tests — tasks module
-│   └── test_integration.c  # Integration tests
-└── Makefile
-```
+**Stage 2 — Code quality and testing**
+- Applied readability practices: guard clauses, single-responsibility functions, 
+expressive naming, Doxygen-style interface documentation
+- Implemented unit tests covering normal, boundary, and error cases across all modules
+- Implemented integration tests validating data persistence and inter-module communication
+- Automated the full test suite via Makefile (`make test`)
+- Tests uncovered real NULL dereference bugs that were fixed and documented
 
-## Build & Run
-
-**Main program:**
+## How to run
 ```bash
-make
-./program
+make        # builds the main program
+make test   # runs the full test suite
 ```
 
-**Tests:**
-```bash
-make test
-```
-
-**Clean:**
-```bash
-make clean
-```
-
-## Requirements
-
-- GCC
-- Make
-- Linux or Windows
-
-## Notes
-
-Data is persisted in CSV files (`plants.csv`, `watering.csv`, `tasks.csv`) created automatically in the execution directory.
+## Stack
+C99 · POSIX · Makefile
