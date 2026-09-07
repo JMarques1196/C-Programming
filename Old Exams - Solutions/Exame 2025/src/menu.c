@@ -29,16 +29,18 @@ void menu_run(PostList *list)
         {
         case 1:
             post_list_display(list);
+            printf("\nPress any key to continue...");
+            getchar();
             break;
         case 2:
             // Chamaremos aqui a leitura da popularidade quando estiver pronta
             printf("\nWIP\n");
             break;
         case 0:
-            printf("\nA sair do programa...\n");
+            printf("\nExiting the program...\n");
             break;
         default:
-            printf("\n[Aviso] Opcao invalida! Tente novamente.\n");
+            printf("\n[Warning] Invalid option! Please try again.\n");
             break;
         }
 
