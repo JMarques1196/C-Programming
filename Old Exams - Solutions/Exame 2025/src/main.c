@@ -7,6 +7,7 @@
 #include "../include/menu.h"
 
 #define POSTS_FILE "../posts.csv"
+#define POPULARITY_FILE "../popularity.csv"
 
 int main(void)
 {
@@ -29,9 +30,17 @@ int main(void)
         return 1;
     }
 
-    // 3. Exibir os posts carregados
+    printf("Loading post metrics from '%s'...\n", POPULARITY_FILE);
+    if (file_load_popularity(POPULARITY_FILE, list) != SUCCESS)
+    {
+        printf("[Error] Failed to read the file %s.\n", POPULARITY_FILE);
+        post_list_destroy(list); // ALWAYS FREE MEMORY BEFORE TERMINATING THE PROGRAM!!!
+        return 1;
+    }
+
+    // 3. Show Posts
     menu_run(list);
-    // 4. Libertar a memória alocada
+    // 4. Free Memory
     post_list_destroy(list);
     printf("\nMemory freed. Program terminated successfully.\n");
 

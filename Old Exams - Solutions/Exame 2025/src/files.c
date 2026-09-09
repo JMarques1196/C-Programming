@@ -6,6 +6,7 @@
 #include "../include/posts.h"
 #include "../include/files.h"
 
+/* Post related functions */
 Status file_load_posts(const char *filename, PostList *list)
 {
 
@@ -34,6 +35,36 @@ Status file_load_posts(const char *filename, PostList *list)
         total_posts++;
     }
 
+    fclose(fp);
+    return SUCCESS;
+}
+
+/* Popularity related functions */
+
+Status file_load_popularity(const char *filename, PostList *list)
+{
+    // Implement the function to load popularity data from a file
+
+    FILE *fp = fopen(filename, "r");
+
+    int temporary_id;
+    int temporary_views;
+    int temporary_likes;
+    int temporary_comments;
+
+    if (!fp)
+    {
+        return FAIL;
+    }
+    if (list == NULL)
+    {
+        return FAIL;
+    }
+
+    while (fscanf(fp, "%d,%d,%d,%d", &temporary_id, &temporary_views, &temporary_likes, &temporary_comments) == 4)
+    {
+        post_list_update(list, temporary_id, temporary_views, temporary_likes, temporary_comments);
+    }
     fclose(fp);
     return SUCCESS;
 }

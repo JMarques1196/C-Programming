@@ -14,6 +14,7 @@ struct Post
     int views;
     int likes;
     int comments;
+    float score;
 };
 
 struct PostList
@@ -24,6 +25,7 @@ struct PostList
 
 /* Create and Destoy Lists */
 PostList *post_list_create(void)
+
 {
     PostList *list = (PostList *)malloc(sizeof(PostList));
     if (list != NULL)
@@ -86,7 +88,7 @@ Status post_list_display(const PostList *list)
 {
     if (list == NULL || list->count == 0)
     {
-        printf("\n[Aviso] Nao ha posts para exibir.\n");
+        printf("\n[Warning] No posts to display.\n");
         return FAIL;
     }
 
@@ -103,4 +105,34 @@ Status post_list_display(const PostList *list)
     return SUCCESS;
 }
 
-Status post_list_update_metrics(PostList *list, int id, int views, int likes, int comments);
+Status post_list_update(PostList *list, int id, int views, int likes, int comments)
+{
+    /* score formula: = (0.5 * gostos + 0.3 * comentários + 0.2 * visualizações) / 100 */
+    if (list == NULL)
+    {
+        return FAIL;
+    }
+    if (id < 0)
+    {
+        return FAIL;
+    }
+    for (int i = 0; i < list->count; i++)
+    {
+        if (list->Elements[i].id == id)
+        {
+            list->Elements[i].views = views;
+            list->Elements[i].likes = likes;
+            list->Elements[i].comments = comments;
+            list->Elements[i].score = (0.5 * likes + 0.3 * comments + 0.2 * views) / 100;
+            return SUCCESS;
+        }
+    }
+    return FAIL;
+}
+
+/* Auxiliary Functions */
+
+Status update_by_score(PostList *list)
+{
+    //
+}

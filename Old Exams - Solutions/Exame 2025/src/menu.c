@@ -29,11 +29,11 @@ void menu_run(PostList *list)
         {
         case 1:
             post_list_display(list);
-            printf("\nPress any key to continue...");
+            printf("\nPress return to continue...");
             getchar();
             break;
         case 2:
-            // Chamaremos aqui a leitura da popularidade quando estiver pronta
+            /* Load popularity file */
             printf("\nWIP\n");
             break;
         case 0:
